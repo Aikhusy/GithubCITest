@@ -13,12 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cypressrun
-        uses: Aikhusy/GithubCITest@v1
-        with:
-          build: npm run build
-          start: npm start
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -27,5 +21,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Build and Start Application
+        run: |
+          npm run build
+          npm start
+        background: true
+
       - name: Run Cypress Tests
-        run: npm run cypress:open
+        run: npm run cypress:run
